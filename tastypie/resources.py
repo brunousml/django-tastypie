@@ -87,6 +87,7 @@ class ResourceOptions(object):
     always_return_data = False
     collection_name = 'objects'
     detail_uri_name = 'pk'
+    object_name = None
 
     def __new__(cls, meta=None):
         overrides = {}
@@ -608,7 +609,7 @@ class Resource(object):
         if obj is None:
             obj = self._meta.object_class()
 
-        return Bundle(obj=obj, data=data, request=request)
+        return Bundle(obj=obj, data=data, request=request, name=self._meta.object_name)
 
     def build_filters(self, filters=None):
         """
